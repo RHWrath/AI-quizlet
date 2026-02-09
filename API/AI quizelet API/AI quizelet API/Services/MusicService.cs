@@ -1,21 +1,21 @@
-using Domain.Entities;
+using Entities;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
-using Infrastructure;
 
-namespace Application.Services;
-
-public class MusicService
+namespace Services
 {
-    private readonly IMongoCollection<Music> _music;
-
-    public MusicService(IOptions<MongoDbSettings> settings)
+    public class MusicService
     {
-        var client = new MongoClient(settings.Value.ConnectionString);
-        var database = client.GetDatabase(settings.Value.DatabaseName);
-        _music = database.GetCollection<Music>(settings.Value.MusicCollection);
-    }
+        private readonly IMongoCollection<Music> _music;
 
-    public async Task<List<Music>> GetAllAsync()
-        => await _music.Find(_ => true).ToListAsync();
+        public MusicService(IOptions<MongoDbSettings> settings)
+        {
+            var client = new MongoClient(settings.Value.ConnectionString);
+            var database = client.GetDatabase(settings.Value.DatabaseName);
+            _music = database.GetCollection<Music>(settings.Value.MusicCollection);
+        }
+
+        public async Task<List<Music>> GetAllAsync() =>
+            await _music.Find(_ => true).ToListAsync();
+    }
 }
