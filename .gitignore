@@ -1,0 +1,4 @@
+*.exe
+API/DAL/mongodb-configs/bin/mongod.pdb
+API/DAL/mongodb-configs/bin/mongos.pdb
+*.zip
