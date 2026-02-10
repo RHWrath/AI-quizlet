@@ -3,7 +3,6 @@ using Application.Services;
 using DTOs.Images;
 using DTOs.Music;
 using Entities;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 
@@ -46,7 +45,7 @@ namespace AI_quizelet_API.Controllers
                             music[i].Link);
 
                         posts.Add(new(
-                            images[i].PostId,
+                            images[i].PostID,
                             imageRe,
                             musicRe));
                 }
@@ -60,13 +59,50 @@ namespace AI_quizelet_API.Controllers
         }
 
         [HttpPost]
-        public bool Postanswer(string userName, string postId, bool answer)
+        public bool Postanswer(string playerId, int postId, bool answer)
         {
-            //TODO validate answer
+            bool correct = true;
 
-            //TODO save answer to DB
+            Music music = musicService.GetByPostIdAsync(postId).Result;
+            if (music.AI == answer)
+            {
+                correct = false;
+            }
 
-            throw new NotImplementedException();
+            Image image = imageService.GetByPostIdAsync(postId).Result;
+            if (image.AI == answer)
+            {
+                correct = false;
+            }
+
+            if (correct)
+            {
+                int currentScore = playerService.GetByIdAsync(playerId).Result.Score;
+                int newScore = currentScore + 1;
+
+                playerService.UpdateScoreAsync(playerId, newScore);
+            }
+
+            return correct;
+        }
+
+        [HttpPost]
+        [Route("createacount")]
+        public bool CreateAcount(string name)
+        {
+            try
+            {
+                Player player = new(name);
+
+                playerService.CreateAsync(player);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception();
+            }
         }
     }
 }
