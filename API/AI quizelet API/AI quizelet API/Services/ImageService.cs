@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using MongoDbSettings = Services.MongoDbSettings;
 
-namespace Application.Services;
+namespace Services;
 
 public class ImageService
 {
