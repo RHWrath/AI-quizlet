@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "Fleck/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/Fleck.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/Fleck.dll": {}
+        }
+      },
       "runtime.android-arm.runtime.native.System.IO.Ports/10.0.2": {
         "type": "package",
         "runtimeTargets": {
@@ -1159,6 +1168,21 @@
     }
   },
   "libraries": {
+    "Fleck/1.2.0": {
+      "sha512": "bPLXn6QbLAFoviur6XbrKB0Zn6x04E8VibHXyHZeJsoC7bkUl5DVtzM5cZgDuqHkIrBqAXJyTNJwSNIc6wBJ2Q==",
+      "type": "package",
+      "path": "fleck/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fleck.1.2.0.nupkg.sha512",
+        "fleck.nuspec",
+        "lib/net40/Fleck.dll",
+        "lib/net45/Fleck.dll",
+        "lib/netcoreapp2.0/Fleck.dll",
+        "lib/netstandard2.0/Fleck.dll"
+      ]
+    },
     "runtime.android-arm.runtime.native.System.IO.Ports/10.0.2": {
       "sha512": "iv4A6c1a0pBn8vdbi86vfbcgSmYNLcv++EUqraO46JS4VZatJFIr3VMExUoulAZJQbL9JNl/qHSYX/1SSNTN9Q==",
       "type": "package",
@@ -1714,6 +1738,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "Fleck >= 1.2.0",
       "System.IO.Ports >= 10.0.2"
     ]
   },
@@ -1760,6 +1785,10 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
+          "Fleck": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "System.IO.Ports": {
             "target": "Package",
             "version": "[10.0.2, )"

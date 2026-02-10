@@ -34,3 +34,4 @@
 /Users/polina/Desktop/Open Learning/night_of_the_nerds/AI-quizlet/ArduinoReader/bin/Debug/net10.0/runtimes/win/lib/net10.0/System.IO.Ports.dll
 /Users/polina/Desktop/Open Learning/night_of_the_nerds/AI-quizlet/ArduinoReader/obj/Debug/net10.0/ArduinoReader.csproj.AssemblyReference.cache
 /Users/polina/Desktop/Open Learning/night_of_the_nerds/AI-quizlet/ArduinoReader/obj/Debug/net10.0/ArduinoR.17B0CB44.Up2Date
+/Users/polina/Desktop/Open Learning/night_of_the_nerds/AI-quizlet/ArduinoReader/bin/Debug/net10.0/Fleck.dll

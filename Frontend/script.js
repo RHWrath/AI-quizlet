@@ -188,7 +188,21 @@ function generateMockData() {
   });
 }
 
+// Key buttons (right/left)
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") handleGuess("real");
   else if (e.key === "ArrowRight") handleGuess("ai");
 });
+
+// BUTTONS from Arduino
+const socket = new WebSocket("ws://127.0.0.1:8181");
+
+socket.onopen = () => {
+  console.log("Connected to Arduino via WebSocket");
+};
+
+socket.onmessage = (event) => {
+  const value = event.data; // "ai" or "real"
+  handleGuess(value);
+};
