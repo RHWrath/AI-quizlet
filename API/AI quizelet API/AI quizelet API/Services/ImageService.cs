@@ -1,7 +1,7 @@
-using Domain.Entities;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
-using Infrastructure;
+using Services;
+using Entities;
 
 namespace Application.Services;
 
@@ -9,11 +9,11 @@ public class ImageService
 {
     private readonly IMongoCollection<Image> _images;
 
-    public ImageService(IOptions<MongoDbSettings> settings)
+    public ImageService(MongoDbSettings settings)
     {
-        var client = new MongoClient(settings.Value.ConnectionString);
-        var database = client.GetDatabase(settings.Value.DatabaseName);
-        _images = database.GetCollection<Image>(settings.Value.ImagesCollection);
+        var client = new MongoClient(settings.ConnectionString);
+        var database = client.GetDatabase(settings.DatabaseName);
+        _images = database.GetCollection<Image>(settings.ImagesCollection);
     }
 
     public async Task<List<Image>> GetAllAsync()

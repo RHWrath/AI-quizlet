@@ -8,11 +8,11 @@ namespace Services
     {
         private readonly IMongoCollection<Music> _music;
 
-        public MusicService(IOptions<MongoDbSettings> settings)
+        public MusicService(MongoDbSettings settings)
         {
-            var client = new MongoClient(settings.Value.ConnectionString);
-            var database = client.GetDatabase(settings.Value.DatabaseName);
-            _music = database.GetCollection<Music>(settings.Value.MusicCollection);
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+            _music = database.GetCollection<Music>(settings.MusicCollection);
         }
 
         public async Task<List<Music>> GetAllAsync() =>

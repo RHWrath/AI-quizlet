@@ -60,4 +60,4 @@ TestResult.xml
 nunit-*.xml
 API/AI quizelet API/.vs/AI quizelet API/FileContentIndex/*
 /API/Database
-API/AI quizelet API/.vs
+API/AI quizelet API/.vs/*

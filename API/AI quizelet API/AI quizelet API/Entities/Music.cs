@@ -11,5 +11,6 @@ namespace Entities
 
         public string Link { get; set; } = null!;
         public bool AI { get; set; }
+        public string PostId { get; set; }
     }
 }

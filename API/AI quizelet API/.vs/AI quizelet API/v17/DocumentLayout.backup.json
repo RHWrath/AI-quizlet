@@ -1,14 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\spamd\\Documents\\GitHub\\AI-quizlet\\API\\AI quizelet API\\",
+  "WorkspaceRootPath": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI quizelet API.csproj|c:\\users\\spamd\\documents\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\controllers\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI quizelet API.csproj|solutionrelative:ai quizelet api\\controllers\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\ai quizelet api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\ai quizelet api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI quizelet API.csproj|c:\\users\\spamd\\documents\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\dtos\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI quizelet API.csproj|solutionrelative:ai quizelet api\\dtos\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\controllers\\instagramcontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\controllers\\instagramcontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\entities\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\entities\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\services\\playerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\services\\playerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\dtos\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\dtos\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\services\\musicservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\services\\musicservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|c:\\users\\merel\\documenten\\github\\ai-quizlet\\api\\ai quizelet api\\ai quizelet api\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC815E4-ED89-4EDF-B5DC-B3985BE79217}|AI quizelet API\\AI_quizelet_API.csproj|solutionrelative:ai quizelet api\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +38,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Post.cs",
-              "DocumentMoniker": "C:\\Users\\spamd\\Documents\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\DTOs\\Post.cs",
-              "RelativeDocumentMoniker": "AI quizelet API\\DTOs\\Post.cs",
-              "ToolTip": "C:\\Users\\spamd\\Documents\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\DTOs\\Post.cs",
-              "RelativeToolTip": "AI quizelet API\\DTOs\\Post.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwA4AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:00:32.069Z",
+              "DocumentIndex": 0,
+              "Title": "AI quizelet API.http",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\AI quizelet API.http",
+              "RelativeDocumentMoniker": "AI quizelet API\\AI quizelet API.http",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\AI quizelet API.http",
+              "RelativeToolTip": "AI quizelet API\\AI quizelet API.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-02-10T10:21:34.835Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Class.cs",
-              "DocumentMoniker": "C:\\Users\\spamd\\Documents\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Controllers\\Class.cs",
-              "RelativeDocumentMoniker": "AI quizelet API\\Controllers\\Class.cs",
-              "ToolTip": "C:\\Users\\spamd\\Documents\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Controllers\\Class.cs",
-              "RelativeToolTip": "AI quizelet API\\Controllers\\Class.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Entities\\Player.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\Entities\\Player.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Entities\\Player.cs",
+              "RelativeToolTip": "AI quizelet API\\Entities\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T13:51:11.846Z",
+              "WhenOpened": "2026-02-10T08:56:49.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerService.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\PlayerService.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\Services\\PlayerService.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\PlayerService.cs",
+              "RelativeToolTip": "AI quizelet API\\Services\\PlayerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T08:56:47.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Post.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\DTOs\\Post.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\DTOs\\Post.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\DTOs\\Post.cs",
+              "RelativeToolTip": "AI quizelet API\\DTOs\\Post.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T08:53:44.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MusicService.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\MusicService.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\Services\\MusicService.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\MusicService.cs",
+              "RelativeToolTip": "AI quizelet API\\Services\\MusicService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T08:52:16.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ImageService.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\ImageService.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\Services\\ImageService.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Services\\ImageService.cs",
+              "RelativeToolTip": "AI quizelet API\\Services\\ImageService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T08:51:47.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InstagramControler.cs",
+              "DocumentMoniker": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Controllers\\InstagramControler.cs",
+              "RelativeDocumentMoniker": "AI quizelet API\\Controllers\\InstagramControler.cs",
+              "ToolTip": "C:\\Users\\merel\\Documenten\\GitHub\\AI-quizlet\\API\\AI quizelet API\\AI quizelet API\\Controllers\\InstagramControler.cs",
+              "RelativeToolTip": "AI quizelet API\\Controllers\\InstagramControler.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T14:52:21.912Z",
               "EditorCaption": ""
             }
           ]

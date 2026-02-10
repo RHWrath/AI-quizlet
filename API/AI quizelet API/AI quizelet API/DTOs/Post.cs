@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using DTOs.Images
+using DTOs.Music;
 
 namespace AI_quizelet_API.DTOs
 {
     public class Post
     {
-        public int id { get; set; }
-        public string discription { get; set; }
-        public BitArray BitArray { get; set; }
-
-        public Post(int id, string discription, BitArray bitArray)
+        public string id { get; set; }
+        public ImageResponse image { get; set; }
+        public MusicResponse music { get; set; }
+        public Post(string id, ImageResponse image, MusicResponse music)
         {
             this.id = id;
-            this.discription = discription;
-            this.BitArray = bitArray;
+            this.image = image;
+            this.music = music;
         }
     }
 }

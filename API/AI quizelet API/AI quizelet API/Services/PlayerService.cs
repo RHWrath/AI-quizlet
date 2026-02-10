@@ -8,11 +8,11 @@ namespace Services
     {
         private readonly IMongoCollection<Player> _players;
 
-        public PlayerService(IOptions<MongoDbSettings> settings)
+        public PlayerService(MongoDbSettings settings)
         {
-            var client = new MongoClient(settings.Value.ConnectionString);
-            var database = client.GetDatabase(settings.Value.DatabaseName);
-            _players = database.GetCollection<Player>(settings.Value.PlayersCollection);
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+            _players = database.GetCollection<Player>(settings.PlayersCollection);
         }
 
         public async Task<List<Player>> GetAllAsync() =>
