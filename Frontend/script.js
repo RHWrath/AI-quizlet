@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "http://localhost:5090";
 const USERNAME = "player_1";
 
 let currentScore = 200;
@@ -31,14 +31,8 @@ async function initGame() {
 
 async function fetchAllPosts() {
   try {
-    // MOCK MODE:
-    const data = await generateMockData();
-
-    // REAL MODE:
-    /*
-        const response = await fetch(`${API_BASE_URL}/insta`);
-        const data = await response.json();
-        */
+    const response = await fetch(`${API_BASE_URL}/insta`);
+    const data = await response.json();
 
     if (Array.isArray(data)) {
       gameQueue = data;
@@ -47,25 +41,27 @@ async function fetchAllPosts() {
     }
   } catch (error) {
     console.error("Error fetching posts:", error);
+    ui.caption.innerText = "Error connecting to server.";
   }
 }
 
-async function submitGuessToBackend(postId, userGuess) {
+async function validateGuessWithBackend(postId, userGuessedAi) {
   try {
-    const guessString = userGuess.toLowerCase();
-    const url = `${API_BASE_URL}/insta?userName=${USERNAME}&postId=${postId}&guess=${guessString}`;
+    const url = `${API_BASE_URL}/insta?playerId=${USERNAME}&postId=${postId}&answer=${userGuessedAi}`;
 
-    console.log(`Mock submitting to: ${url}`);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
 
-    // REAL MODE:
-    /*
-        await fetch(url, {
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }
-        });
-        */
+    if (!response.ok) throw new Error("API Error");
+
+    const isGuessCorrect = await response.json();
+
+    return isGuessCorrect;
   } catch (error) {
-    console.error("Failed to report guess:", error);
+    console.error("Failed to validate guess:", error);
+    return false;
   }
 }
 
@@ -85,26 +81,27 @@ function loadNextFromQueue() {
 
   currentPostData = {
     id: apiPost.id,
-    imageUrl: apiPost.image.link,
-    isAi: apiPost.image.ai,
-    caption: "Is this image Real or AI generated?",
+    imageUrl: apiPost.image.url,
   };
 
   ui.image.src = currentPostData.imageUrl;
-  ui.caption.innerText = currentPostData.caption;
+  ui.caption.innerText = "Is this image Real or AI generated?";
   lucide.createIcons();
 }
 
-function handleGuess(guessInput) {
+async function handleGuess(guessInput) {
   if (isProcessing || !currentPostData) return;
   isProcessing = true;
 
-  const isUserGuessingReal = guessInput === "real";
-  const isCorrect =
-    (isUserGuessingReal && !currentPostData.isAi) ||
-    (!isUserGuessingReal && currentPostData.isAi);
+  const userGuessedAi = guessInput === "ai";
 
-  updateResultUI(isCorrect);
+  const isCorrect = await validateGuessWithBackend(
+    currentPostData.id,
+    userGuessedAi,
+  );
+
+  const actuallyAi =
+    (userGuessedAi && isCorrect) || (!userGuessedAi && !isCorrect);
 
   if (isCorrect) {
     currentScore += 50;
@@ -113,21 +110,23 @@ function handleGuess(guessInput) {
   }
   ui.score.innerText = currentScore;
 
-  submitGuessToBackend(currentPostData.id, guessInput);
+  updateResultUI(isCorrect, actuallyAi);
 
   setTimeout(() => {
     loadNextFromQueue();
   }, 2000);
 }
 
-function updateResultUI(isCorrect) {
-  const actualLabel = currentPostData.isAi ? "AI GENERATED" : "REAL PHOTO";
+function updateResultUI(isCorrect, actuallyAi) {
+  const actualLabel = actuallyAi ? "AI GENERATED" : "REAL POST";
   const iconName = isCorrect ? "check" : "x";
 
   ui.card.classList.add(isCorrect ? "glow-correct" : "glow-wrong");
 
   ui.footer.innerHTML = `<i data-lucide="${iconName}"></i> ${actualLabel}`;
   ui.footer.classList.remove("hidden");
+
+  ui.footer.classList.remove("text-correct", "text-wrong");
   ui.footer.classList.add(isCorrect ? "text-correct" : "text-wrong");
 
   lucide.createIcons();
@@ -151,44 +150,8 @@ function loseLife() {
   }
 }
 
-function generateMockData() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 101,
-          image: {
-            link: "https://picsum.photos/400?grayscale",
-            ai: true,
-          },
-        },
-        {
-          id: 102,
-          image: {
-            link: "https://picsum.photos/400",
-            ai: false,
-          },
-        },
-        {
-          id: 103,
-          image: {
-            link: "https://picsum.photos/401",
-            ai: false,
-          },
-        },
-        {
-          id: 104,
-          image: {
-            link: "https://picsum.photos/401?grayscale",
-            ai: true,
-          },
-        },
-      ]);
-    }, 800);
-  });
-}
-
 document.addEventListener("keydown", (e) => {
+  if (isProcessing) return;
   if (e.key === "ArrowLeft") handleGuess("real");
   else if (e.key === "ArrowRight") handleGuess("ai");
 });
