@@ -17,5 +17,8 @@ namespace Services
 
         public async Task<List<Music>> GetAllAsync() =>
             await _music.Find(_ => true).ToListAsync();
+
+        public async Task<Music?> GetByPostIdAsync(int postId) =>
+            await _music.Find(m => m.PostID == postId).FirstOrDefaultAsync();
     }
 }

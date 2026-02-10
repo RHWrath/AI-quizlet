@@ -1,7 +1,7 @@
-using Domain.Entities;
+using Entities;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
-using Infrastructure;
+using MongoDbSettings = Services.MongoDbSettings;
 
 namespace Application.Services;
 
@@ -18,4 +18,7 @@ public class ImageService
 
     public async Task<List<Image>> GetAllAsync()
         => await _images.Find(_ => true).ToListAsync();
+
+    public async Task<Image?> GetByPostIdAsync(int postId)
+        => await _images.Find(i => i.PostID == postId).FirstOrDefaultAsync();
 }
