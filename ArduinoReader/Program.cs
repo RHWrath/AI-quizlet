@@ -17,26 +17,46 @@ class Program
                 socket = ws;
                 Console.WriteLine("WebSocket connected");
             };
-            ws.OnClose = () => socket = null;
+            ws.OnClose = () =>
+            {
+                socket = ws;
+                Console.WriteLine("WebSocket Disconnected");
+            };
         });
-
+        // before running check which if windows or mac and which port is being used
+        // string portName = "COM3"; 
         string portName = "/dev/cu.usbserial-110";
-        using SerialPort port = new SerialPort(portName, 9600);
-        port.NewLine = "\n";
-        port.Open();
 
-        Console.WriteLine("Listening to Arduino...");
-
-        while (true)
+        try
         {
-            string line = port.ReadLine().Trim(); // "0" or "1"
+            using SerialPort port = new SerialPort(portName, 9600);
+            port.NewLine = "\n";
+            port.Open();
 
-            // 0 = AI, 1 = REAL
-            string message = line == "0" ? "ai" : "real";
+            Console.WriteLine("Listening to Arduino...");
 
-            Console.WriteLine($"Arduino → {message}");
+            while (true)
+            {
+                string line = port.ReadLine().Trim(); // "0" or "1"
 
-            socket?.Send(message);
+                // 0 = AI, 1 = REAL
+                string message = line == "0" ? "ai" : "real";
+
+                Console.WriteLine($"Arduino → {message}");
+                if (socket == null) {Console.WriteLine("No frontend connected, Message dropped") continue;}
+
+                socket?.Send(message);
+            }
         }
+        catch (TimeoutException)
+        {
+            
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
+        
     }
 }
