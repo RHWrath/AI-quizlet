@@ -11,6 +11,6 @@ namespace Entities
 
         public string Link { get; set; } = null!;   // pad naar bestand
         public bool AI { get; set; }
-        public string PostId { get; set; }
+        public int PostID { get; set; }
     }
 }
