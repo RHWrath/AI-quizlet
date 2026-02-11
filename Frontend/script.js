@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:5090";
 let USERNAME = "";
 
-let currentScore = 200;
+let currentScore = 0;
 let lives = 3;
 let currentPostData = null;
 let gameQueue = [];
@@ -22,7 +22,6 @@ const ui = {
   nameInput: document.getElementById("player-name-input"),
   startBtn: document.getElementById("start-btn"),
 
-  // scoreboard ui
   scoreboardName: document.getElementById("scoreboard-player-name"),
   scoreboardScore: document.getElementById("scoreboard-final-score"),
   leaderboardBody: document.getElementById("leaderboard-body"),
@@ -30,6 +29,10 @@ const ui = {
 };
 
 lucide.createIcons();
+
+ui.nameInput.addEventListener("input", (e) => {
+  e.target.value = e.target.value.replace(/\s/g, "");
+});
 
 ui.startBtn.addEventListener("click", async () => {
   const enteredName = ui.nameInput.value.trim();
@@ -126,7 +129,6 @@ function loadNextFromQueue() {
     endGame("finished");
     return;
   }
-  
 
   const apiPost = gameQueue.shift();
 
@@ -163,9 +165,11 @@ async function handleGuess(guessInput) {
 
   updateResultUI(isCorrect, actuallyAi);
 
-  setTimeout(() => {
-    loadNextFromQueue();
-  }, 1500);
+  if (lives > 0) {
+    setTimeout(() => {
+      loadNextFromQueue();
+    }, 1500);
+  }
 }
 
 function updateResultUI(isCorrect, actuallyAi) {
@@ -195,8 +199,7 @@ function loseLife() {
 
   if (lives === 0) {
     setTimeout(() => {
-      alert("GAME OVER - Final Score: " + currentScore);
-      location.reload();
+      endGame("no_lives");
     }, 500);
   }
 }
@@ -207,36 +210,21 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "ArrowRight") handleGuess("ai");
 });
 
-//SCOREBOARD
+// SCOREBOARD
 
-async function submitScoreToBackend(playerName, score) {
-  try {
-    const url = `${API_BASE_URL}/insta/score?playerId=${encodeURIComponent(playerName)}&score=${score}`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (!res.ok) throw new Error("Failed to submit score");
-    return true;
-  } catch (err) {
-    console.error("submitScoreToBackend error:", err);
-    return false;
-  }
+function getLeaderboard() {
+  const data = localStorage.getItem("instaGameLeaderboard");
+  return data ? JSON.parse(data) : [];
 }
 
-async function fetchLeaderboardFromBackend() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/insta/leaderboard`);
-    if (!res.ok) throw new Error("Failed to load leaderboard");
+function saveScore(playerName, score) {
+  const leaderboard = getLeaderboard();
 
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  } catch (err) {
-    console.error("fetchLeaderboardFromBackend error:", err);
-    return [];
-  }
+  leaderboard.push({ name: playerName, score: score });
+  leaderboard.sort((a, b) => b.score - a.score);
+  const top5 = leaderboard.slice(0, 5);
+
+  localStorage.setItem("instaGameLeaderboard", JSON.stringify(top5));
 }
 
 function renderLeaderboardRows(entries) {
@@ -253,7 +241,8 @@ function renderLeaderboardRows(entries) {
     return;
   }
 
-  entries.slice(0, 10).forEach((entry, idx) => {
+  // Render the rows
+  entries.forEach((entry, idx) => {
     const name = entry.name ?? entry.playerName ?? "Unknown";
     const score = entry.score ?? 0;
 
@@ -268,9 +257,7 @@ function renderLeaderboardRows(entries) {
   });
 }
 
-//MOCK DATA FOR LEADERBOARD
-
-async function endGame(reason = "") {
+function endGame(reason = "") {
   isProcessing = true;
 
   ui.gameScreen.classList.add("hidden");
@@ -279,43 +266,32 @@ async function endGame(reason = "") {
   ui.scoreboardName.innerText = USERNAME || "PLAYER";
   ui.scoreboardScore.innerText = currentScore;
 
-  // For now: mock leaderboard
-  renderLeaderboardRows([
-    { name: "Name", score: 5555 },
-    { name: "Name", score: 1222 },
-    { name: "Name", score: 1111 },
-    { name: "Name", score: 1111 },
-    { name: "Name", score: 1111 },
-  ]);
+  saveScore(USERNAME || "PLAYER", currentScore);
+
+  renderLeaderboardRows(getLeaderboard());
 }
 
-
-
-// RESET THE GAME BUTTON 
+// RESET THE GAME BUTTON
 
 function resetGame() {
-  // reset state
-  currentScore = 200;
+  currentScore = 0;
   lives = 3;
   currentPostData = null;
   gameQueue = [];
   isProcessing = false;
 
-  // reset UI text
   if (ui.score) ui.score.innerText = currentScore;
   if (ui.caption) ui.caption.innerText = "Loading content...";
   if (ui.image) ui.image.src = "https://via.placeholder.com/400";
 
-  // reset hearts
   if (ui.lives) {
     const hearts = ui.lives.querySelectorAll(".heart-icon");
     hearts.forEach((h) => {
       h.classList.remove("heart-lost");
-      h.style.fill = ""; // back to CSS default
+      h.style.fill = "";
     });
   }
 
-  // reset result footer/card glow
   if (ui.card) ui.card.classList.remove("glow-correct", "glow-wrong");
   if (ui.footer) {
     ui.footer.classList.add("hidden");
@@ -323,18 +299,15 @@ function resetGame() {
     ui.footer.innerHTML = "";
   }
 
-  // show start screen, hide others
   ui.scoreboardScreen?.classList.add("hidden");
   ui.gameScreen?.classList.add("hidden");
   ui.startScreen?.classList.remove("hidden");
 
-  // reset start button
   if (ui.startBtn) {
     ui.startBtn.disabled = false;
     ui.startBtn.innerText = "START GAME";
   }
 
-  // optionally clear name field
   if (ui.nameInput) ui.nameInput.value = "";
 
   lucide.createIcons();
