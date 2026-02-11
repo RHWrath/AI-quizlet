@@ -32,10 +32,10 @@ public class InstagramController : ControllerBase
         {
             for (int i = 0; i < images.Count; i++)
             {
-                ImageResponse imageRe = new(images[i].Id, images[i].Link);
-                MusicResponse musicRe = new(music[i].Id, music[i].Link);
-
-                posts.Add(new(images[i].PostID, imageRe, musicRe));
+                ImageResponse imageRe = new(images[i]._Id, images[i].link);
+                //MusicResponse musicRe = new(music[i]._Id, music[i].link);
+                MusicResponse musicRe = new("1", "test");
+                posts.Add(new(images[i].postId, imageRe));
             }
             return posts;
         }

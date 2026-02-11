@@ -7,10 +7,10 @@ namespace Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = null!;
+        public string _Id { get; set; } = null!;
 
-        public string Link { get; set; } = null!;
+        public string link { get; set; } = null!;
         public bool AI { get; set; }
-        public int PostID { get; set; }
+        public int postId { get; set; }
     }
 }

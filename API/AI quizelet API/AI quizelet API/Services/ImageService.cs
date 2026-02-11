@@ -20,5 +20,5 @@ public class ImageService
         => await _images.Find(_ => true).ToListAsync();
 
     public async Task<Image?> GetByPostIdAsync(int postId)
-        => await _images.Find(i => i.PostID == postId).FirstOrDefaultAsync();
+        => await _images.Find(i => i.postId == postId).FirstOrDefaultAsync();
 }
