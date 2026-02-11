@@ -132,9 +132,16 @@ function loadNextFromQueue() {
 
   const apiPost = gameQueue.shift();
 
+  const imageBasePath =
+    "../API/AI quizelet API/AI quizelet API/Database/mongodb-configs";
+
+  const backendImageInfo = apiPost.image.url.startsWith("/")
+    ? apiPost.image.url
+    : "/" + apiPost.image.url;
+
   currentPostData = {
     id: apiPost.id,
-    imageUrl: apiPost.image.url,
+    imageUrl: imageBasePath + backendImageInfo,
   };
 
   ui.image.src = currentPostData.imageUrl;
