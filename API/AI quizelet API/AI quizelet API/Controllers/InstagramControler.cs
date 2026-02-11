@@ -35,7 +35,7 @@ public class InstagramController : ControllerBase
             {
                 ImageResponse imageRe = new(images[i]._Id, images[i].link);
                 MusicResponse musicRe = null;
-                if (music.Count <= i)
+                if (music.Count > i)
                 {
                     musicRe = new(music[i]._Id, music[i].link);
                 }
@@ -46,7 +46,7 @@ public class InstagramController : ControllerBase
             List<Post> selectedPots = new();
             for (int i = 0; i < 10; i++)
             {
-                int selected = ran.Next(posts.Count-1);
+                int selected = ran.Next(posts.Count - 1);
                 selectedPots.Add(posts[selected]);
                 posts.Remove(posts[selected]);
             }
