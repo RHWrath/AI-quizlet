@@ -1,0 +1,255 @@
+:root {
+  --bg-dark: #0e0e11;
+  --card-bg: #17171c;
+  --card-border: #26262b;
+  --accent-green: #19e67d;
+  --accent-pink: #f0427c;
+  --accent-red: #e23636;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+
+  --spacing-unit: 2vh;
+  --font-xs: 1.5vh;
+  --font-sm: 1.8vh;
+  --font-md: 2.2vh;
+  --font-lg: 2.5vh;
+  --font-xl: 3vh;
+}
+
+body {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.phone-container {
+  background-color: var(--card-bg);
+  width: 80vw;
+  height: 95vh;
+  border-radius: 3vh;
+  padding: 0 var(--spacing-unit) var(--spacing-unit) var(--spacing-unit);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 0.5vh solid var(--card-border);
+  box-sizing: border-box;
+}
+
+.title-section {
+  border-bottom: 0.5vh solid var(--card-border);
+  margin-left: calc(var(--spacing-unit) * -1);
+  margin-right: calc(var(--spacing-unit) * -1);
+  padding: 1.5vh var(--spacing-unit);
+}
+
+.game-title {
+  color: var(--accent-green);
+  text-align: center;
+  font-size: var(--font-lg);
+  letter-spacing: 0.5vh;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.game-header {
+  flex-shrink: 0;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2vh 0;
+}
+
+.lives {
+  display: flex;
+  gap: 1vh;
+}
+
+.heart-icon {
+  width: 3.5vh;
+  height: 3.5vh;
+  color: var(--accent-pink);
+  fill: var(--accent-pink);
+}
+
+.score {
+  font-weight: 700;
+  font-size: var(--font-xl);
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  border: 0.3vh solid transparent;
+  border-radius: 1.5vh;
+  padding: 1.5vh 1.5vh 8vh 1.5vh;
+  position: relative;
+  transition: all 0.3s ease-out;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5vh;
+}
+
+.avatar {
+  width: 5vh;
+  height: 5vh;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  border: 0.2vh solid #444;
+}
+
+.username {
+  font-weight: 700;
+  font-size: var(--font-md);
+}
+
+.timestamp {
+  color: var(--text-secondary);
+  font-size: var(--font-xs);
+}
+
+.post-image-container {
+  width: 100%;
+  flex-grow: 1;
+  background-color: #2a2a2a;
+  border-radius: 1vh;
+  overflow: hidden;
+  position: relative;
+  border: 0.2vh solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5vh 0;
+  flex-shrink: 0;
+}
+
+.post-actions svg {
+  width: 4vh;
+  height: 4vh;
+  stroke-width: 2px;
+  cursor: pointer;
+}
+
+.action-heart {
+  width: 4.3vh !important;
+  height: 4.3vh !important;
+}
+
+.left-actions {
+  display: flex;
+  gap: 2vh;
+}
+
+.post-details {
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.likes-count {
+  font-weight: 700;
+  margin-bottom: 1vh;
+}
+
+.caption {
+  margin: 0;
+}
+
+.comments-link {
+  color: var(--text-secondary);
+  margin-top: 1vh;
+  display: block;
+}
+
+.result-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6.5vh;
+
+  background-color: var(--card-bg);
+  border-radius: 0 0 1.5vh 1.5vh;
+  border-top: 0.2vh solid #333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vh;
+  padding: 0;
+  z-index: 5;
+
+  font-weight: 700;
+  font-size: var(--font-lg);
+  letter-spacing: 0.2vh;
+  text-transform: uppercase;
+}
+
+.result-footer.text-correct {
+  color: var(--accent-green);
+  border-top-color: var(--accent-green);
+}
+.result-footer.text-wrong {
+  color: var(--accent-red);
+  border-top-color: var(--accent-red);
+}
+
+.result-footer svg {
+  width: 4vh;
+  height: 4vh;
+  stroke-width: 2px;
+}
+
+.glow-correct {
+  border-color: var(--accent-green);
+  box-shadow:
+    0 0 3vh rgba(0, 255, 136, 0.4),
+    inset 0 0 1.5vh rgba(0, 255, 136, 0.1);
+}
+
+.glow-wrong {
+  border-color: var(--accent-red);
+  box-shadow:
+    0 0 3vh rgba(255, 71, 87, 0.4),
+    inset 0 0 1.5vh rgba(255, 71, 87, 0.1);
+}
+
+.hidden {
+  display: none !important;
+}
