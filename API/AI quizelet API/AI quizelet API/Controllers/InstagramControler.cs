@@ -1,108 +1,84 @@
-﻿using AI_quizelet_API.DTOs;
-using Application.Services;
+﻿using Services; // <- belangrijk voor PlayerService, ImageService, MusicService en MongoDbSettings
+using Microsoft.AspNetCore.Mvc;
+using AI_quizelet_API.DTOs;
 using DTOs.Images;
 using DTOs.Music;
 using Entities;
-using Microsoft.AspNetCore.Mvc;
-using Services;
 
-namespace AI_quizelet_API.Controllers
+[ApiController]
+[Route("insta")]
+public class InstagramController : ControllerBase
 {
-    [ApiController]
-    [Route("insta")]
-    public class InstagramControler
+    private readonly ImageService _imageService;
+    private readonly MusicService _musicService;
+    private readonly PlayerService _playerService;
+
+    public InstagramController(ImageService imageService, MusicService musicService, PlayerService playerService)
     {
-        public ImageService imageService;
-        public MusicService musicService;
-        public PlayerService playerService;
+        _imageService = imageService;
+        _musicService = musicService;
+        _playerService = playerService;
+    }
 
-        InstagramControler()
+    [HttpGet]
+    public async Task<List<Post>> GetPost()
+    {
+        List<Image> images = await _imageService.GetAllAsync();
+        List<Music> music = await _musicService.GetAllAsync();
+
+        List<Post> posts = new();
+
+        try
         {
-            MongoDbSettings settings = new();
-            imageService = new ImageService(settings);
-            musicService = new MusicService(settings);
-            playerService = new PlayerService(settings);
+            for (int i = 0; i < images.Count; i++)
+            {
+                ImageResponse imageRe = new(images[i].Id, images[i].Link);
+                MusicResponse musicRe = new(music[i].Id, music[i].Link);
+
+                posts.Add(new(images[i].PostID, imageRe, musicRe));
+            }
+            return posts;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
+
+    [HttpPost]
+    public bool PostAnswer(string playerId, int postId, bool answer)
+    {
+        bool correct = true;
+
+        Music music = _musicService.GetByPostIdAsync(postId).Result;
+        if (music.AI == answer) correct = false;
+
+        Image image = _imageService.GetByPostIdAsync(postId).Result;
+        if (image.AI == answer) correct = false;
+
+        if (correct)
+        {
+            int currentScore = _playerService.GetByIdAsync(playerId).Result.Score;
+            _playerService.UpdateScoreAsync(playerId, currentScore + 1);
         }
 
-        [HttpGet]
-        async public Task<List<Post>> GetPost()
+        return correct;
+    }
+
+    [HttpPost("createaccount")]
+    public bool CreateAccount(string name)
+    {
+        try
         {
-            List<Image> images = imageService.GetAllAsync().Result;
-            List<Music> music = musicService.GetAllAsync().Result;
-
-            List<Post> posts = new List<Post>();
-
-            try
-            {
-                for (int i = 0; i < images.Count(); i++)
-                {
-                        ImageResponse imageRe = new(
-                            images[i].Id,
-                            images[i].Link);
-
-                        MusicResponse musicRe = new(
-                            music[i].Id,
-                            music[i].Link);
-
-                        posts.Add(new(
-                            images[i].PostID,
-                            imageRe,
-                            musicRe));
-                }
-                return posts;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw new Exception();
-            }
+            Player player = new(name);
+            _playerService.CreateAsync(player);
+            return true;
         }
-
-        [HttpPost]
-        public bool Postanswer(string playerId, int postId, bool answer)
+        catch (Exception ex)
         {
-            bool correct = true;
-
-            Music music = musicService.GetByPostIdAsync(postId).Result;
-            if (music.AI == answer)
-            {
-                correct = false;
-            }
-
-            Image image = imageService.GetByPostIdAsync(postId).Result;
-            if (image.AI == answer)
-            {
-                correct = false;
-            }
-
-            if (correct)
-            {
-                int currentScore = playerService.GetByIdAsync(playerId).Result.Score;
-                int newScore = currentScore + 1;
-
-                playerService.UpdateScoreAsync(playerId, newScore);
-            }
-
-            return correct;
-        }
-
-        [HttpPost]
-        [Route("createacount")]
-        public bool CreateAcount(string name)
-        {
-            try
-            {
-                Player player = new(name);
-
-                playerService.CreateAsync(player);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw new Exception();
-            }
+            Console.WriteLine(ex.Message);
+            throw;
         }
     }
 }
