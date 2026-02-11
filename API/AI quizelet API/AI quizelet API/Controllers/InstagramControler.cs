@@ -4,6 +4,7 @@ using AI_quizelet_API.DTOs;
 using DTOs.Images;
 using DTOs.Music;
 using Entities;
+using System.Runtime.Intrinsics.X86;
 
 [ApiController]
 [Route("insta")]
@@ -33,11 +34,24 @@ public class InstagramController : ControllerBase
             for (int i = 0; i < images.Count; i++)
             {
                 ImageResponse imageRe = new(images[i]._Id, images[i].link);
-                //MusicResponse musicRe = new(music[i]._Id, music[i].link);
-                MusicResponse musicRe = new("1", "test");
-                posts.Add(new(images[i].postId, imageRe));
+                MusicResponse musicRe = null;
+                if (music.Count <= i)
+                {
+                    musicRe = new(music[i]._Id, music[i].link);
+                }
+                posts.Add(new(images[i].postId, imageRe, musicRe));
             }
-            return posts;
+
+            Random ran = new Random();
+            List<Post> selectedPots = new();
+            for (int i = 0; i < 10; i++)
+            {
+                int selected = ran.Next(posts.Count-1);
+                selectedPots.Add(posts[selected]);
+                posts.Remove(posts[selected]);
+            }
+
+            return selectedPots;
         }
         catch (Exception ex)
         {
