@@ -72,6 +72,36 @@
         </main>
       </div>
 
+      <div id="scoreboard-screen" class="screen-container hidden">
+        <i data-lucide="bot" class="hero-icon"></i>
+      
+        <h2 class="subtitle scoreboard-subtitle">
+          WELL DONE <span id="scoreboard-player-name">{nameInput}</span>,<br />
+          YOUR SCORE IS <span id="scoreboard-final-score">0</span>
+        </h2>
+      
+        <section class="scoreboard-card" aria-label="Leaderboard">
+          <h3 class="scoreboard-title">LEADERBOARD</h3>
+      
+          <div class="scoreboard-table">
+            <div class="scoreboard-row scoreboard-head">
+              <div class="col-rank">#</div>
+              <div class="col-name">Name</div>
+              <div class="col-score">Score</div>
+            </div>
+      
+            <div class="scoreboard-divider"></div>
+      
+            <!-- JS injects rows here -->
+            <div id="leaderboard-body"></div>
+          </div>
+        </section>
+      
+        <button id="play-again-btn" class="play-again-btn">PLAY AGAIN</button>
+      </div>
+      
+      
+
     <script src="script.js"></script>
   </body>
 </html>

@@ -333,3 +333,108 @@ body {
   flex-grow: 1;
   height: 100%;
 }
+
+/* =========================
+   SCOREBOARD SCREEN (RESULT)
+   ========================= */
+
+   #scoreboard-screen {
+    gap: 3.2vh;
+  }
+  
+  .scoreboard-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 0.12vh;
+  }
+  
+  .scoreboard-subtitle .player-name {
+    color: var(--text-secondary);
+    font-weight: 700;
+  }
+  
+  .scoreboard-subtitle .final-score {
+    color: var(--accent-green);
+    font-weight: 700;
+  }
+  
+  .scoreboard-card {
+    width: 92%;
+    max-width: 62vh;
+    background: transparent;
+    border: 0.45vh solid rgba(255, 255, 255, 0.45);
+    border-radius: 2.4vh;
+    padding: 2.6vh 2.4vh;
+    box-sizing: border-box;
+  }
+  
+  .scoreboard-title {
+    margin: 0 0 2.2vh 0;
+    text-align: center;
+    font-size: var(--font-lg);
+    letter-spacing: 0.35vh;
+    text-transform: uppercase;
+  }
+  
+  .scoreboard-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2vh;
+  }
+  
+  .scoreboard-row {
+    display: grid;
+    grid-template-columns: 10% 55% 35%;
+    align-items: center;
+    font-size: var(--font-md);
+    letter-spacing: 0.18vh;
+    text-transform: uppercase;
+  }
+  
+  .scoreboard-head {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  
+  .scoreboard-divider {
+    height: 0.45vh;
+    width: 100%;
+    background: var(--accent-green);
+    border-radius: 999px;
+    opacity: 0.95;
+  }
+  
+  .col-rank {
+    text-align: left;
+    padding-left: 0.6vh;
+    font-weight: 700;
+  }
+  
+  .col-name {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  
+  .col-score {
+    text-align: right;
+    padding-right: 0.6vh;
+    font-weight: 700;
+  }
+  
+  button#play-again-btn{
+  background-color: var(--accent-green);
+  color: #000;
+  font-family: "Roboto Mono", monospace;
+  font-size: var(--font-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: 1.5vh;
+  padding: 1.8vh 3vh;
+  cursor: pointer;
+  width: 85%;
+  text-transform: uppercase;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.3s ease;
+}
