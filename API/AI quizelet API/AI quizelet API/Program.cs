@@ -15,6 +15,17 @@ builder.Services.AddScoped<ImageService>();
 builder.Services.AddScoped<MusicService>();
 builder.Services.AddScoped<PlayerService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5500")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 // Add seeder services
 builder.Services.AddTransient<ImageSeeder>();
 builder.Services.AddHostedService<SeederHostedService>();
@@ -31,6 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
