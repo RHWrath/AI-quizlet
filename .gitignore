@@ -61,3 +61,6 @@ nunit-*.xml
 API/AI quizelet API/.vs/AI quizelet API/FileContentIndex/*
 /API/AI quizelet API/AI quizelet API/Database
 API/AI quizelet API/.vs/*
+
+# Node modules for frontend
+node_modules/

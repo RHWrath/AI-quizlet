@@ -46,7 +46,7 @@ ui.startBtn.addEventListener("click", async () => {
   ui.startBtn.disabled = true;
 
   try {
-    const url = `${API_BASE_URL}/insta/createacount?name=${encodeURIComponent(enteredName)}`;
+    const url = `${API_BASE_URL}/insta/createaccount?name=${encodeURIComponent(enteredName)}`;
 
     const response = await fetch(url, {
       method: "POST",
@@ -289,7 +289,7 @@ function resetGame() {
 
   if (ui.score) ui.score.innerText = currentScore;
   if (ui.caption) ui.caption.innerText = "Loading content...";
-  if (ui.image) ui.image.src = "https://via.placeholder.com/400";
+  if (ui.image) ui.image.src = "";
 
   if (ui.lives) {
     const hearts = ui.lives.querySelectorAll(".heart-icon");
