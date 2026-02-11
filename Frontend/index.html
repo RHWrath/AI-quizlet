@@ -21,56 +21,56 @@
       <div class="title-section">
         <h1 class="game-title">BOT OR NOT</h1>
       </div>
-      <header class="game-header">
-        <div class="stats-row">
-          <div class="lives" id="lives-container">
-            <i data-lucide="heart" class="heart-icon"></i>
-            <i data-lucide="heart" class="heart-icon"></i>
-            <i data-lucide="heart" class="heart-icon"></i>
+
+      <div id="start-screen" class="screen-container">
+        <i data-lucide="bot" class="hero-icon"></i>
+        <h2 class="subtitle">Human reality or synthetic illusion? Trust your instincts.</h2>
+        <input type="text" id="player-name-input" placeholder="ENTER PLAYER NAME" autocomplete="off" />
+        <button id="start-btn">START GAME</button>
+      </div>
+
+      <div id="game-screen" class="hidden">
+        <header class="game-header">
+          <div class="stats-row">
+            <div class="lives" id="lives-container">
+              <i data-lucide="heart" class="heart-icon"></i>
+              <i data-lucide="heart" class="heart-icon"></i>
+              <i data-lucide="heart" class="heart-icon"></i>
+            </div>
+            <div class="score" id="score-display">200</div>
           </div>
-          <div class="score" id="score-display">200</div>
-        </div>
-      </header>
+        </header>
 
-      <main class="post-card">
-        <div class="post-header">
-          <div class="user-info">
-            <div class="avatar">RP</div>
-            <span class="username">RealPerson1</span>
+        <main class="post-card">
+          <div class="post-header">
+            <div class="user-info">
+              <div class="avatar">RP</div>
+              <span class="username">RealPerson1</span>
+            </div>
+            <span class="timestamp">3h</span>
           </div>
-          <span class="timestamp">3h</span>
-        </div>
-
-        <div class="post-image-container">
-          <img
-            id="game-image"
-            src="https://via.placeholder.com/400"
-            alt="Post content"
-          />
-
-          <div id="feedback-overlay" class="hidden"></div>
-        </div>
-
-        <div class="post-actions">
-          <div class="left-actions">
-            <i data-lucide="heart" class="action-heart"></i>
-            <i data-lucide="message-circle"></i>
-            <i data-lucide="send"></i>
+          <div class="post-image-container">
+            <img id="game-image" src="https://via.placeholder.com/400" alt="Post content" />
           </div>
-          <i data-lucide="bookmark"></i>
-        </div>
-
-        <div class="post-details">
-          <p class="likes-count">12,542 Likes</p>
-          <p class="caption">
-            <span class="username">RealPerson1</span>
-            <span id="caption-text">Loading content...</span>
-          </p>
-          <p class="comments-link">View all 567 comments</p>
-        </div>
-        <div id="result-footer" class="result-footer hidden">
-        </div>
-    </main>
+          <div class="post-actions">
+            <div class="left-actions">
+              <i data-lucide="heart" class="action-heart"></i>
+              <i data-lucide="message-circle"></i>
+              <i data-lucide="send"></i>
+            </div>
+            <i data-lucide="bookmark"></i>
+          </div>
+          <div class="post-details">
+            <p class="likes-count">12,542 Likes</p>
+            <p class="caption">
+              <span class="username">RealPerson1</span>
+              <span id="caption-text">Loading content...</span>
+            </p>
+            <p class="comments-link">View all 567 comments</p>
+          </div>
+          <div id="result-footer" class="result-footer hidden"></div>
+        </main>
+      </div>
 
     <script src="script.js"></script>
   </body>

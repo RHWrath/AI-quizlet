@@ -1,5 +1,5 @@
 const API_BASE_URL = "http://localhost:5090";
-const USERNAME = "player_1";
+let USERNAME = "";
 
 let currentScore = 200;
 let lives = 3;
@@ -14,10 +14,50 @@ const ui = {
   lives: document.getElementById("lives-container"),
   card: document.querySelector(".post-card"),
   footer: document.getElementById("result-footer"),
+  startScreen: document.getElementById("start-screen"),
+  gameScreen: document.getElementById("game-screen"),
+  nameInput: document.getElementById("player-name-input"),
+  startBtn: document.getElementById("start-btn"),
 };
 
 lucide.createIcons();
-initGame();
+
+ui.startBtn.addEventListener("click", async () => {
+  const enteredName = ui.nameInput.value.trim();
+
+  if (!enteredName) {
+    alert("Enter a player name to continue");
+    return;
+  }
+
+  ui.startBtn.innerText = "CONNECTING...";
+  ui.startBtn.disabled = true;
+
+  try {
+    const url = `${API_BASE_URL}/insta/createacount?name=${encodeURIComponent(enteredName)}`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) throw new Error("Could not create account");
+
+    USERNAME = enteredName;
+
+    ui.startScreen.classList.add("hidden");
+    ui.gameScreen.classList.remove("hidden");
+
+    lucide.createIcons();
+
+    initGame();
+  } catch (error) {
+    console.error("Account creation error:", error);
+    alert("Error connecting to server.");
+    ui.startBtn.innerText = "START GAME";
+    ui.startBtn.disabled = false;
+  }
+});
 
 async function initGame() {
   ui.caption.innerText = "Loading game data...";
@@ -33,6 +73,8 @@ async function fetchAllPosts() {
   try {
     const response = await fetch(`${API_BASE_URL}/insta`);
     const data = await response.json();
+
+    console.log("Data received from GET /insta:", data);
 
     if (Array.isArray(data)) {
       gameQueue = data;
