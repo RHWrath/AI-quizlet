@@ -21,8 +21,11 @@ namespace Services
         public async Task<Player?> GetByIdAsync(string id) =>
             await _players.Find(p => p.Id == id).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(Player player) =>
+        public async Task<Player> CreateAsync(Player player)
+        {
             await _players.InsertOneAsync(player);
+            return player;
+        }
 
         public async Task UpdateScoreAsync(string id, int newScore) =>
             await _players.UpdateOneAsync(p => p.Id == id,

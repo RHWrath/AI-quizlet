@@ -81,13 +81,12 @@ public class InstagramController : ControllerBase
     }
 
     [HttpPost("createaccount")]
-    public bool CreateAccount(string name)
+    public async Task<Player> CreateAccount(string name)
     {
         try
         {
             Player player = new(name);
-            _playerService.CreateAsync(player);
-            return true;
+            return await _playerService.CreateAsync(player);
         }
         catch (Exception ex)
         {
