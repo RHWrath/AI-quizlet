@@ -65,11 +65,11 @@ public class InstagramController : ControllerBase
     {
         bool correct = true;
 
-        Music music = _musicService.GetByPostIdAsync(postId).Result;
-        if (music.AI == answer) correct = false;
+        //Music music = _musicService.GetByPostIdAsync(postId).Result;
+        //if (music.AI == answer) correct = false;
 
         Image image = _imageService.GetByPostIdAsync(postId).Result;
-        if (image.AI == answer) correct = false;
+        if (image.AI = !answer) correct = false;
 
         if (correct)
         {
