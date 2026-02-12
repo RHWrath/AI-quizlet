@@ -211,6 +211,8 @@ function loseLife() {
   }
 }
 
+// Key buttons (right/left)
+
 document.addEventListener("keydown", (e) => {
   if (isProcessing) return;
   if (e.key === "ArrowLeft") handleGuess("real");
@@ -323,3 +325,15 @@ function resetGame() {
 ui.playAgainBtn.addEventListener("click", () => {
   resetGame();
 });
+
+// BUTTONS from Arduino
+const socket = new WebSocket("ws://127.0.0.1:8181");
+
+socket.onopen = () => {
+  console.log("Connected to Arduino via WebSocket");
+};
+
+socket.onmessage = (event) => {
+  const value = event.data; // "ai" or "real"
+  handleGuess(value);
+};
