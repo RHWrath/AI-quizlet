@@ -13,7 +13,8 @@ class Program
 
         server.Start(ws =>
         {
-            ws.OnOpen = () => {
+            ws.OnOpen = () =>
+            {
                 socket = ws;
                 Console.WriteLine("WebSocket connected");
             };
@@ -24,8 +25,8 @@ class Program
             };
         });
         // before running check which if windows or mac and which port is being used
-        // string portName = "COM3"; 
-        string portName = "/dev/cu.usbserial-110";
+        string portName = "COM3";
+        //string portName = "/dev/cu.usbserial-110";
 
         try
         {
@@ -43,20 +44,20 @@ class Program
                 string message = line == "0" ? "ai" : "real";
 
                 Console.WriteLine($"Arduino → {message}");
-                if (socket == null) {Console.WriteLine("No frontend connected, Message dropped") continue;}
+                if (socket == null) { Console.WriteLine("No frontend connected, Message dropped"); continue; }
 
                 socket?.Send(message);
             }
         }
         catch (TimeoutException)
         {
-            
+
         }
         catch (Exception ex)
         {
-            System.Console.WriteLine(e);
+            System.Console.WriteLine(ex);
             throw;
         }
-        
+
     }
 }

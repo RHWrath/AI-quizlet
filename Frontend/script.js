@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost:5090";
 let USERNAME = "";
-
+let ID = "";
 let currentScore = 0;
 let lives = 3;
 let currentPostData = null;
@@ -56,7 +56,8 @@ ui.startBtn.addEventListener("click", async () => {
     if (!response.ok) throw new Error("Could not create account");
 
     USERNAME = enteredName;
-
+    const data = await response.json();
+    ID = data.id;
     ui.startScreen.classList.add("hidden");
     ui.gameScreen.classList.remove("hidden");
 
@@ -101,7 +102,7 @@ async function fetchAllPosts() {
 
 async function validateGuessWithBackend(postId, userGuessedAi) {
   try {
-    const url = `${API_BASE_URL}/insta?playerId=${USERNAME}&postId=${postId}&answer=${userGuessedAi}`;
+    const url = `${API_BASE_URL}/insta?playerId=${ID}&postId=${postId}&answer=${userGuessedAi}`;
 
     const response = await fetch(url, {
       method: "POST",
